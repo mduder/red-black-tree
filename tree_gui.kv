@@ -1,0 +1,66 @@
+<Node>:
+    do_rotation: False
+    do_scale: False
+    do_translation: (False, False)
+    size_hint: None, None
+    size: sp(self.radius * 2), sp(self.radius * 2)
+    canvas:
+        Color:
+            rgba: self.canvas_color
+        Ellipse:
+            size: self.size
+    Label:
+        text: str(self.parent.node_key)
+        pos: 0, 0
+        size: self.parent.size
+        font_size: sp(self.parent.radius)
+
+
+<NodeField>:
+    do_rotation: False
+    do_scale: False
+    do_translation_y: False
+
+
+<ActionButtonBase>:
+    font_size: sp(25)
+    on_press:
+        self.parent.parent.button_press(self.text)
+        self.parent.parent.nv_ti.text = ''
+
+<RedrawButton>:
+    text: 'Redraw'
+
+<InsertButton>:
+    text: 'Insert'
+
+<DeleteButton>:
+    text: 'Delete'
+
+<ClearButton>:
+    text: 'Clear'
+
+<NodeValTextInput>:
+    input_type: 'number'
+    font_size: sp(25)
+    multiline: False
+    text: '1 - 999'
+
+
+<LandscapeMenu>:
+    orientation: 'horizontal'
+    size_hint_y: 0.1
+    RedrawButton
+    InsertButton
+    NodeValTextInput
+    DeleteButton
+    ClearButton
+
+<NodeFieldContainer>:
+    NodeField
+
+<TreeDisplay>:
+    orientation: 'vertical'
+    LandscapeMenu
+    NodeFieldContainer
+
