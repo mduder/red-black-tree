@@ -274,11 +274,10 @@ class Tree(object):
         else:
             raise KeyError
 
-        curr, prev = self.__root, None
-        while curr:
-            prev = curr
+        curr = self.__root
+        while curr.child[direction].key:
             curr = curr.child[direction]
-        return prev
+        return curr
 
     def traverse(self, callback, process_order = IN_ORDER):
         if not self.__root:
